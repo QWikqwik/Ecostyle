@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Корзина</title>
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../css/trash-styles.css">
+  <script src="../js/trash.js"></script>
+</head>
+<body>
+  
+  <header>
+    <div class="logo"> <img src="../pic/лого.png" class="logo" alt="logo"></div>
+    <nav>
+      <ul>
+        <li><a href="../html/index.html">Главная</a></li>
+        <li><a href="../html/catalog.html">Каталог</a></li>
+        <li><a href="../html/index.html #aboutUs">О нас</a></li>
+        <li><a href="../html/trash.html">Корзина</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>Корзина</h2>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Товар</th>
+          <th>Цена</th>
+          <th>Количество</th>
+          <th>Всего</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <!-- Здесь будут добавлены товары из каталога -->
+      </tbody>
+    </table>
+    <div class="total">
+      <span id="total-price">Итого: 0 руб.</span>
+      <button id="clear-cart-button" class="button">Удалить все</button>
+      <a id="checkout-button" href="#" class="button">Оформить заказ</a>
+    </div>
+  </main>
+  
+  <footer>
+    <p>Эко-стиль &copy; 2024</p>
+  </footer>
+  <script>
+   
+   document.addEventListener('DOMContentLoaded', function() {
+    const cartElement = document.getElementById('cart-items');
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let totalPrice = 0;
+
+    cartItems.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price.toFixed(2)} руб.</td>
+            <td>${item.quantity}</td>
+            <td>${(item.price * item.quantity).toFixed(2)} руб.</td>
+        `;
+        cartElement.appendChild(row);
+        totalPrice += item.price * item.quantity;
+    });
+
+    document.getElementById('total-price').textContent = `Итого: ${totalPrice.toFixed(2)} руб.`;
+
+    // Добавляем обработчик события для кнопки "Удалить все"
+    const clearCartButton = document.getElementById('clear-cart-button');
+    clearCartButton.addEventListener('click', function() {
+        localStorage.removeItem('cartItems'); // Удаляем все товары из localStorage
+        // Удаляем все строки из таблицы корзины
+        while (cartElement.firstChild) {
+            cartElement.removeChild(cartElement.firstChild);
+        }
+        document.getElementById('total-price').textContent = `Итого: 0 руб.`; // Обновляем общую сумму
+    });
+
+    // Обработчик события для кнопки "Оформить заказ"
+    document.getElementById('checkout-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Предотвращаем стандартное действие кнопки (переход по ссылке)
+
+        // Получаем данные о заказе
+        const orderData = {
+            totalPrice: totalPrice.toFixed(2) // Передаем только общую стоимость заказа
+        };
+
+        // Преобразуем объект с данными о заказе в формат JSON
+        const jsonData = JSON.stringify(orderData);
+
+        // Создаем объект XMLHttpRequest для отправки данных на сервер
+        const xhr = new XMLHttpRequest();
+
+        // Устанавливаем метод, URL и асинхронный режим для запроса
+        xhr.open('POST', '/php/process_order.php', true);
+
+        // Устанавливаем заголовок Content-Type для правильной обработки данных на сервере
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        // Отправляем запрос на сервер
+        xhr.send(jsonData);
+
+        // Обрабатываем ответ от сервера
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Если запрос успешно обработан, выводим сообщение об успешном оформлении заказа
+                alert(xhr.responseText);
+                // Очищаем корзину после успешного оформления заказа
+                localStorage.removeItem('cartItems');
+                location.reload(); // Перезагружаем страницу
+            } else {
+                // Если произошла ошибка, выводим сообщение об ошибке
+                alert('Ошибка оформления заказа!');
+            }
+        };
+    });
+});
+
+
+
+</script>
+
+
+
+  <script src="./js/bootstrap.js"></script>
+</body>
+</html>

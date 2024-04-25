@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Эко</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+<body>
+  <div class="container">
+  <header>
+    <div class="logo"> <img src="../pic/лого.png" class="logo" alt="logo"></div>
+    <nav>
+      <ul>
+        <li><a href="../html/index.html">Главная</a></li>
+        <li><a href="#aboutUs">О нас</a></li>
+        <li><a href="../html/catalog.html">Каталог</a></li>
+        <li><a href="../html/trash.html">Корзина</a></li>
+        <li><a href="../php/login.php">Войти</a></li>
+        <li><a href="../php/register.php">Регистрация</a></li>
+
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="banner">   
+    <h2>Лучшие коллекции модной одежды</h2>
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../pic/11.jpg" class="d-block w-100" alt="clothes">
+        </div>
+        <div class="carousel-item">
+          <img src="../pic/112.avif" class="d-block w-100" alt="clothes">
+        </div>
+        <div class="carousel-item">
+          <img src="../pic/13.jpg" class="d-block w-100" alt="clothes">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  
+  <section class="featured-products">
+    <h2>Рекомендуемые товары</h2>
+    <div class="product-list">
+    <div class="product-card">
+      <img src="../pic/card1.jpg" width="250" height="280" alt="свитер">
+      <h3>Платье</h3>
+      <p>Платье изумрудное шёлк</p>
+      <a href="../html/catalog.html" class="button">Подробнее</a>
+    </div>
+
+    <div class="product-card">
+      <img src="../pic/card2.jpg" width="250" height="280" alt="брюки">
+      <h3>Брюки</h3>
+      <p>Брюки чёрные трикотаж</p>
+      <a href="../html/catalog.html" class="button">Подробнее</a>
+    </div>
+
+    <div class="product-card">
+      <img src="../pic/card3.jpg" width="250" height="280" alt="платье">
+      <h3>Платье</h3>
+      <p>Платье бежевое шёлк</p>
+      <a href="../html/catalog.html" class="button">Подробнее</a>
+    </div>
+  </div>
+  </section>
+
+  <section class="aboutUs" id="aboutUs">
+    <h2>О нас</h2>
+    <p>Мы решили начать с себя. Мы верим, что бизнес должен не только приносить прибыль, но и бережно относиться к планете. Поэтому мы строим свой бренд так, чтобы беречь природу, используя стратегию маленьких шагов. Наше природное любопытство мотивирует двигаться вперед. Мы ежедневно находимся в поисках лучших экологичных решений и инновационных технологий для создания наших коллекций.
+    Нам важно делиться этими знаниями и достижениями с нашими покупателями и вовлекать их в процесс бережного отношения к природе.</p>
+    <img src="../pic/ab.jpg" width="510" height="380" alt="Наши товары">
+  </section>
+
+  <section class="newsletter">
+    <h2>Подпишитесь на нашу рассылку</h2>
+    <form>
+      <input type="email" placeholder="Введите ваш email" required>
+      <button type="submit">Подписаться</button>
+    </form>
+  </section>
+  
+  <footer>
+    <p>Эко-стиль &copy; 2024</p>
+  </footer>
+</div>
+  <script src="../js/bootstrap.js"></script>
+</body>
+</html>
